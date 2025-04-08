@@ -33,7 +33,7 @@ lazy_static! {
     ];
 }
 
-const STACK_SIZE: usize = 8388608;
+const STACK_SIZE: usize = 8 * 1024 * 1024;
 
 #[uniffi::export]
 pub fn hello() -> String {
