@@ -47,10 +47,11 @@ The Benchmarks were performed over `n=100` runs.
 
 |       Device      | Avg. Issuance Time (ms) | Avg. Proof generation Time (ms) | Avg. Verification Time (ms) |
 |-------------------|-------------------------|---------------------------------|-----------------------------|
-|      Sony XQ-DE54 |                    13ms |                           708ms |                       422ms |
-|    Google Pixel 6 |                    21ms |                           941ms |                       517ms |
-|  Samsung SM-A236B |                    30ms |                          1233ms |                       712ms |
-|  Samsung SM-A528B |                    26ms |                          1342ms |                       870ms |
-|  Samsung SM-A145R |                    81ms |                          2806ms |                      1744ms |
+| Sony XQ-DE54      |                    13ms |                           708ms |                       422ms |
+| Google Pixel 6    |                    21ms |                           941ms |                       517ms |
+| Samsung SM-A236B  |                    30ms |                          1233ms |                       712ms |
+| Samsung SM-A528B  |                    26ms |                          1342ms |                       870ms |
+| Samsung SM-A145R  |                    81ms |                          2806ms |                      1744ms |
 | iPhone 11 Pro Max |                     5ms |                           707ms |                       431ms |
-|          iPhone X |                     7ms |                           972ms |                       601ms |
+| iPhone XS Max     |                     6ms |                           911ms |                       545ms |
+| iPhone X          |                     7ms |                           972ms |                       505ms |
