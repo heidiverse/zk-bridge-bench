@@ -33,6 +33,8 @@ lazy_static! {
     ];
 }
 
+const STACK_SIZE: usize = 8388608;
+
 #[uniffi::export]
 pub fn hello() -> String {
     "Hello, World".to_string()
@@ -62,7 +64,7 @@ pub struct DeviceBinding {
 #[uniffi::export]
 pub fn zkp_issue(issuer: &Keypair, device_binding: &DeviceBinding) -> String {
     let rt = tokio::runtime::Builder::new_current_thread()
-        .thread_stack_size(8388608)
+        .thread_stack_size(STACK_SIZE)
         .build()
         .unwrap();
 
@@ -148,29 +150,38 @@ pub fn zkp_present(
     message: Vec<u8>,
     message_signature: Vec<u8>,
 ) -> String {
-    let device_binding = DBRequirement {
-        public_key,
-        message,
-        message_signature,
-        comm_key_secp_label: b"secp".to_vec(),
-        comm_key_tom_label: b"tom".to_vec(),
-        comm_key_bls_label: b"bls".to_vec(),
-        bpp_setup_label: b"bpp".to_vec(),
-        merlin_transcript_label: b"transcript",
-        challenge_label: b"challenge",
-    };
+    let issuer_pk = issuer_pk.clone();
+    let proving_keys = proving_keys.clone();
+    let handle = std::thread::Builder::new()
+        .stack_size(STACK_SIZE)
+        .spawn(move || {
+            let device_binding = DBRequirement {
+                public_key,
+                message,
+                message_signature,
+                comm_key_secp_label: b"secp".to_vec(),
+                comm_key_tom_label: b"tom".to_vec(),
+                comm_key_bls_label: b"bls".to_vec(),
+                bpp_setup_label: b"bpp".to_vec(),
+                merlin_transcript_label: b"transcript",
+                challenge_label: b"challenge",
+            };
 
-    zkp::present(
-        &mut OsRng,
-        vc,
-        &REQUIREMENTS,
-        Some(device_binding),
-        proving_keys,
-        issuer_pk,
-        "did:example:issuer0",
-        "did:example:issuer0#key001",
-    )
-    .unwrap()
+            zkp::present(
+                &mut OsRng,
+                vc,
+                &REQUIREMENTS,
+                Some(device_binding),
+                &proving_keys,
+                &issuer_pk,
+                "did:example:issuer0",
+                "did:example:issuer0#key001",
+            )
+            .unwrap()
+        })
+        .unwrap();
+
+    handle.join().unwrap()
 }
 
 #[uniffi::export]
