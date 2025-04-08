@@ -15,7 +15,7 @@ struct ContentView: View {
         ZStack {
             VStack(spacing: 20) {
                 Text("Number of iterations: \(Int(sliderValue))")
-                Slider(value: $sliderValue, in: 1...10, step: 1)
+                Slider(value: $sliderValue, in: 1...100, step: 1)
                     .padding()
                 
                 Button(action: {
