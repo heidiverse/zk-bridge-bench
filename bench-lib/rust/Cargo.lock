@@ -1711,6 +1711,7 @@ checksum = "d0881ea181b1df73ff77ffaaf9c7544ecc11e82fba9b5f27b262a3c73a332555"
 [[package]]
 name = "ecdsa_pops"
 version = "0.1.0"
+source = "git+https://github.com/heidiverse/zk-bridge-services.git?branch=feature%2Fnew-zkp#28010302d8c87e2c40410a62194cf631690c406f"
 dependencies = [
  "ark-ec",
  "ark-ff",
@@ -3476,6 +3477,7 @@ dependencies = [
 [[package]]
 name = "next-gen-signatures"
 version = "0.1.2"
+source = "git+https://github.com/heidiverse/zk-bridge-services.git?branch=feature%2Fnew-zkp#28010302d8c87e2c40410a62194cf631690c406f"
 dependencies = [
  "anyhow",
  "ark-bls12-381",
@@ -4270,6 +4272,7 @@ checksum = "f8dcc9c7d52a811697d2151c701e0d08956f92b0e24136cf4cf27b57a6a0d9bf"
 [[package]]
 name = "r1csipa"
 version = "0.1.0"
+source = "git+https://github.com/heidiverse/zk-bridge-services.git?branch=feature%2Fnew-zkp#28010302d8c87e2c40410a62194cf631690c406f"
 dependencies = [
  "ark-std",
  "bellpepper-core",
@@ -4438,6 +4441,7 @@ dependencies = [
 [[package]]
 name = "rdf-util"
 version = "0.1.0"
+source = "git+https://github.com/heidiverse/zk-bridge-services.git?branch=feature%2Fnew-zkp#28010302d8c87e2c40410a62194cf631690c406f"
 dependencies = [
  "anyhow",
  "oxrdf",
@@ -4674,6 +4678,7 @@ dependencies = [
 [[package]]
 name = "rok"
 version = "0.1.0"
+source = "git+https://github.com/heidiverse/zk-bridge-services.git?branch=feature%2Fnew-zkp#28010302d8c87e2c40410a62194cf631690c406f"
 dependencies = [
  "ark-std",
  "bincode",
@@ -7026,6 +7031,7 @@ dependencies = [
 [[package]]
 name = "zkp-util"
 version = "0.1.0"
+source = "git+https://github.com/heidiverse/zk-bridge-services.git?branch=feature%2Fnew-zkp#28010302d8c87e2c40410a62194cf631690c406f"
 dependencies = [
  "anyhow",
  "ark-bls12-381",
