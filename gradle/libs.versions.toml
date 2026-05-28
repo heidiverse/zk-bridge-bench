@@ -1,14 +1,15 @@
 [versions]
-agp = "8.7.2"
+agp = "8.10.1"
 android-compileSdk = "34"
 android-minSdk = "28"
 compose = "1.5.4"
 compose-material3 = "1.1.2"
 androidx-activityCompose = "1.8.0"
-kotlin = "2.1.10"
-trixnity = "0.7.0"
-uniffi-bindgen = "v0.6.14"
-uniffi-runtime = "0.1.0"
+kotlin = "2.2.10"
+uniffi-bindgen = "v1.0.10"
+uniffi-runtime = "1.0.10"
+uniffi-plugin = "1.0.10"
+kotlin-serialization = "1.9.0"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
@@ -19,6 +20,7 @@ compose-foundation = { module = "androidx.compose.foundation:foundation", versio
 compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "compose-material3" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 uniffi-runtime = { module = "ch.ubique.uniffi:runtime", version.ref = "uniffi-runtime" }
+kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serialization" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -27,5 +29,5 @@ compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-atomicfu = { id = "org.jetbrains.kotlin.plugin.atomicfu", version.ref = "kotlin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-trixnity-uniffi = { id = "io.gitlab.trixnity.uniffi.kotlin.multiplatform", version.ref = "trixnity" }
-trixnity-cargo = { id = "io.gitlab.trixnity.cargo.kotlin.multiplatform", version.ref = "trixnity" }
+uniffi-plugin = { id = "ch.ubique.uniffi.plugin", version.ref = "uniffi-plugin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

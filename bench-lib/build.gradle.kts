@@ -1,12 +1,11 @@
-import io.gitlab.trixnity.gradle.cargo.rust.profiles.CargoProfile
-import io.gitlab.trixnity.gradle.rust.dsl.useRustUpLinker
+import ch.ubique.uniffi.plugin.extensions.useRustUpLinker
 
 plugins {
 	alias(libs.plugins.kotlin.multiplatform)
 	alias(libs.plugins.kotlin.atomicfu)
 	alias(libs.plugins.android.library)
-	alias(libs.plugins.trixnity.uniffi)
-	alias(libs.plugins.trixnity.cargo)
+	alias(libs.plugins.kotlin.serialization)
+	alias(libs.plugins.uniffi.plugin)
 }
 
 kotlin {
@@ -19,20 +18,16 @@ kotlin {
 
 	androidTarget {
 		publishLibraryVariants = listOf("release")
+
 	}
 	jvm()
 	listOf(
 		iosX64(),
-		iosArm64(),
-		iosSimulatorArm64()
+		iosArm64()
 	).forEach { iosTarget ->
 		iosTarget.binaries.framework {
 			baseName = "bench-lib"
 			isStatic = true
-		}
-
-		iosTarget.binaries.all {
-			freeCompilerArgs += "-Xallocator=mimalloc"
 		}
 
 		iosTarget.compilations.getByName("main") {
@@ -43,6 +38,7 @@ kotlin {
 	sourceSets {
 		commonMain.dependencies {
 			implementation(libs.uniffi.runtime)
+			implementation(libs.kotlin.serialization)
 		}
 
 		commonTest.dependencies {
@@ -57,12 +53,18 @@ android {
 
 	defaultConfig {
 		minSdk = libs.versions.android.minSdk.get().toInt()
+		ndkVersion = "29.0.13599879"
+		ndk {
+			abiFilters += listOf("arm64-v8a")
+		}
 	}
 
 	compileOptions {
+
 		sourceCompatibility = JavaVersion.VERSION_17
 		targetCompatibility = JavaVersion.VERSION_17
 	}
+
 }
 
 uniffi {
@@ -75,5 +77,5 @@ uniffi {
 
 cargo {
 	packageDirectory = layout.projectDirectory.dir("rust")
-	debug.profile = CargoProfile.Release
+//	debug.profile = CargoProfile.Release
 }

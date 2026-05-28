@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -160,6 +160,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		7555FFB5242A651A00829871 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -172,8 +173,8 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cd \"$SRCROOT/..\"\n./gradlew :bench-lib:embedAndSignAppleFrameworkForXcode\n";
+			shellPath = /bin/zsh;
+			shellScript = "export JAVA_HOME=$(/usr/libexec/java_home -v\"21\");\ncd \"$SRCROOT/..\"\n\n./gradlew :bench-lib:embedAndSignAppleFrameworkForXcode -PforceBuildNativeLibs=true -PreleaseBuild=true\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -329,7 +330,7 @@
 					"-framework",
 					bench_lib,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.iosApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "ch.ubique.zk-bench";
 				PRODUCT_NAME = "Next Gen Signatures Bench";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -359,7 +360,7 @@
 					"-framework",
 					bench_lib,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.iosApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "ch.ubique.zk-bench";
 				PRODUCT_NAME = "Next Gen Signatures Bench";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

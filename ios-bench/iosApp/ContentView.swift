@@ -10,6 +10,8 @@ struct ContentView: View {
     @State private var issuanceMs: Int64 = 0
     @State private var presentationMs: Int64 = 0
     @State private var verificationMs: Int64 = 0
+    @State private var presentationNativeMs: Int64 = 0
+    @State private var verificationNativeMs: Int64 = 0
 
 	var body: some View {
         ZStack {
@@ -45,20 +47,49 @@ struct ContentView: View {
                         .cornerRadius(8)
                 }
                 Text("\(presentationMs)ms")
-                
-                Button(action: {
-                    Task {
-                        verificationMs = bench.benchVerify(n: Int32(sliderValue))
-                        showToastMessage()
-                    }
-                }) {
-                    Text("Bench Verification")
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                }
-                Text("\(verificationMs)ms")
+              Button(action: {
+                  Task {
+                      verificationMs = bench.benchVerify(n: Int32(sliderValue))
+                      showToastMessage()
+                  }
+              }) {
+                  Text("Bench Verification")
+                      .padding()
+                      .background(Color.blue)
+                      .foregroundColor(.white)
+                      .cornerRadius(8)
+              }
+              Text("\(verificationMs)ms")
+
+
+
+              Button(action: {
+                  Task {
+                      presentationNativeMs = bench.benchPresentNative(n: Int32(sliderValue))
+                      showToastMessage()
+                  }
+              }) {
+                  Text("Bench Presentation (Native)")
+                      .padding()
+                      .background(Color.blue)
+                      .foregroundColor(.white)
+                      .cornerRadius(8)
+              }
+              Text("\(presentationNativeMs)ms")
+
+              Button(action: {
+                  Task {
+                      verificationNativeMs = bench.benchVerifyNative(n: Int32(sliderValue))
+                      showToastMessage()
+                  }
+              }) {
+                  Text("Bench Verification (Native)")
+                      .padding()
+                      .background(Color.blue)
+                      .foregroundColor(.white)
+                      .cornerRadius(8)
+              }
+              Text("\(verificationNativeMs)ms")
             }
             .padding()
             

@@ -13,18 +13,32 @@ ark-ff = { version = "0.4.0" }
 ark-serialize = { version = "0.4.2" }
 ark-std = { version = "0.4.0" }
 uniffi = { version = "=0.28.3", features = ["tokio"] }
-next-gen-signatures = { git = "https://github.com/UbiqueInnovation/sprind-next-gen-signing-service", features = [
-    "all",
+next-gen-signatures = {path = "/Users/patrickamrein/Documents/Ubique/git/zkp-libs/zk-bridge-services/next-gen-signatures", features = [
+"all",
 ] }
-rdf-util = { git = "https://github.com/UbiqueInnovation/sprind-next-gen-signing-service" }
-zkp-util = { git = "https://github.com/UbiqueInnovation/sprind-next-gen-signing-service" }
+
+rdf-util = {path = "/Users/patrickamrein/Documents/Ubique/git/zkp-libs/zk-bridge-services/rdf-util"}
+zkp-util = {path = "/Users/patrickamrein/Documents/Ubique/git/zkp-libs/zk-bridge-services/zkp-util" }
 rand_core = { version = "0.6.4" }
 serde_json = "1.0.140"
 lazy_static = "1.5.0"
 tokio = { version = "1.44.2", features = ["full"] }
+flate2 = "1.1.9"
+
+image = "0.24.3"
 
 [target.'cfg(any(target_os = "android"))'.dependencies]
 openssl = { version = "0.10", features = ["vendored"] }
 
-[patch.crates-io]
-wasmer = { git = "https://github.com/UbiqueInnovation/wasmer.git", tag = "v5.0.4" }
+[dev-dependencies]
+jabcode = "1.1.0"
+criterion = "0.5.1"
+[profile.release]
+lto = "fat"
+# [patch.crates-io]
+# wasmer = { git = "https://github.com/UbiqueInnovation/wasmer.git", tag = "v5.0.4" }
+
+
+[[bench]]
+name = "bench"
+harness = false
